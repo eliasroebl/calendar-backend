@@ -13,6 +13,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import java.net.URI;
+import java.util.List;
 
 @Path("/api/absence")
 @Produces(MediaType.APPLICATION_JSON)
@@ -28,6 +29,13 @@ public class AbsenceEndpoint {
     @Path("{id}")
     public Absence getAbsenceById(@PathParam("id")Long id){
         return absenceRepository.findAbsenceById(id);
+    }
+
+    @GET
+    @Path("{employee}")
+    public List<Absence> getAbsencesByEmployee(@PathParam("employee")Long employeeId)
+    {
+        return absenceRepository.findAbsencesByEmployee(employeeId);
     }
 
     @POST

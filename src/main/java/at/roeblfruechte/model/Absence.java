@@ -50,6 +50,7 @@ public class Absence extends PanacheEntityBase implements ICopyable<Absence>, Se
             this.dateEnd = other.dateEnd;
             this.absenceType = other.absenceType;
             this.text = other.text;
+            this.employee = other.employee;
         }
     }
 }
