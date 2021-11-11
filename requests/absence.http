@@ -1,0 +1,40 @@
+POST http://localhost:8080/api/absence
+Content-Type: application/json
+
+{
+  "absenceType": "Urlaub",
+  "dateStart": "2021-11-10",
+  "dateEnd": "2021-11-15",
+  "text": "Bernadette"
+}
+
+###
+
+POST http://localhost:8080/api/workSchedule
+Content-Type: application/json
+
+{
+  "scheduleDate": "2021-11-15"
+}
+
+###
+
+GET http://localhost:8080/api/workSchedule
+
+
+###
+
+GET http://localhost:8080/api/absence/1
+
+###
+
+PUT http://localhost:8080/api/absence/1
+Content-Type: application/json
+
+{
+  "text": "Valerie"
+}
+
+###
+
+DELETE http://localhost:8080/api/absence/1

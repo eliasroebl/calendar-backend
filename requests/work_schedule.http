@@ -1,0 +1,18 @@
+POST http://localhost:8080/api/workSchedule
+Content-Type: application/json
+
+{
+  "id": 1001,
+  "scheduleDate": "2020-01-10"
+}
+
+###
+
+GET http://localhost:8080/api/workSchedule
+
+###
+
+GET http://localhost:8080/api/workSchedule/1
+
+###
+
