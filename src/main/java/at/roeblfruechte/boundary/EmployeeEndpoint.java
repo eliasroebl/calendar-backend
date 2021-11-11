@@ -1,6 +1,6 @@
-package at.roeblfruechte.control;
+package at.roeblfruechte.boundary;
 
-import at.roeblfruechte.boundary.EmployeeRepository;
+import at.roeblfruechte.control.EmployeeRepository;
 import at.roeblfruechte.model.Employee;
 
 import javax.enterprise.context.ApplicationScoped;

@@ -1,9 +1,8 @@
-package at.roeblfruechte.control;
+package at.roeblfruechte.boundary;
 
-import at.roeblfruechte.boundary.EmployeeRepository;
-import at.roeblfruechte.boundary.WorkSchedulingRepository;
+import at.roeblfruechte.control.EmployeeRepository;
+import at.roeblfruechte.control.WorkSchedulingRepository;
 import at.roeblfruechte.model.Employee;
-import at.roeblfruechte.model.WorkSchedule;
 import at.roeblfruechte.model.WorkScheduling;
 
 import javax.inject.Inject;

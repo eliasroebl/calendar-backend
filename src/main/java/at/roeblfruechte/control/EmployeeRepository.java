@@ -1,4 +1,4 @@
-package at.roeblfruechte.boundary;
+package at.roeblfruechte.control;
 
 import at.roeblfruechte.model.Employee;
 import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;

@@ -1,7 +1,7 @@
-package at.roeblfruechte.control;
+package at.roeblfruechte.boundary;
 
-import at.roeblfruechte.boundary.WorkScheduleRepository;
-import at.roeblfruechte.boundary.WorkSchedulingRepository;
+import at.roeblfruechte.control.WorkScheduleRepository;
+import at.roeblfruechte.control.WorkSchedulingRepository;
 import at.roeblfruechte.model.WorkSchedule;
 import at.roeblfruechte.model.WorkScheduling;
 

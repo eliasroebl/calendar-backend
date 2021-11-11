@@ -1,6 +1,6 @@
-package at.roeblfruechte.control;
+package at.roeblfruechte.boundary;
 
-import at.roeblfruechte.boundary.AbsenceRepository;
+import at.roeblfruechte.control.AbsenceRepository;
 import at.roeblfruechte.model.Absence;
 
 import javax.enterprise.context.ApplicationScoped;

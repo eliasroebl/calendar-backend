@@ -1,4 +1,4 @@
-package at.roeblfruechte.boundary;
+package at.roeblfruechte.control;
 
 import at.roeblfruechte.model.Absence;
 import at.roeblfruechte.model.Day;

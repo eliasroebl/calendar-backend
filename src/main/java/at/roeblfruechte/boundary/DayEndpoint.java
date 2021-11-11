@@ -1,6 +1,6 @@
-package at.roeblfruechte.control;
+package at.roeblfruechte.boundary;
 
-import at.roeblfruechte.boundary.DayRepository;
+import at.roeblfruechte.control.DayRepository;
 import at.roeblfruechte.model.Day;
 
 import javax.enterprise.context.ApplicationScoped;
