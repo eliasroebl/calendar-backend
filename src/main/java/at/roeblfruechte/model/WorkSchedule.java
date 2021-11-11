@@ -29,11 +29,38 @@ public class WorkSchedule extends PanacheEntityBase implements ICopyable<WorkSch
 
     @Column(name = "SCHEDULE_DATE")
     @JsonbDateFormat(value = "yyyy-MM-dd")
-    LocalDate scheduleDate = LocalDate.now();
+    LocalDate scheduleDate;
 
-    @OneToMany(mappedBy = "workSchedule", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    public WorkSchedule() {
+    }
+
+    public WorkSchedule(Long id, LocalDate scheduleDate, List<WorkScheduling> workSchedulingList) {
+        this.id = id;
+        setScheduleDate(scheduleDate);
+        this.workSchedulingList = workSchedulingList;
+    }
+
+    @OneToMany(mappedBy = "workSchedule", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     public List<WorkScheduling> workSchedulingList = new ArrayList<>();
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setScheduleDate(LocalDate scheduleDate) {
+        this.scheduleDate = scheduleDate;
+        if(scheduleDate == null){
+            this.scheduleDate = LocalDate.now();
+        }
+    }
+
+    public LocalDate getScheduleDate() {
+        return scheduleDate;
+    }
+
+    public List<WorkScheduling> getWorkSchedulingList() {
+        return workSchedulingList;
+    }
 
     @Override
     public void CopyProperties(WorkSchedule other) {

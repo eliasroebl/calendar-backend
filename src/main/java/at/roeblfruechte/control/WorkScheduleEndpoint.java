@@ -46,7 +46,7 @@ public class WorkScheduleEndpoint {
     public Response createWorkSchedule(@Context UriInfo info, WorkSchedule workSchedule){
         if(workSchedule == null) return Response.noContent().build();
         WorkSchedule newWorkSchedule = new WorkSchedule();
-        workScheduleRepository.persistWorkSchedule(newWorkSchedule);
+        //workScheduleRepository.persistWorkSchedule(newWorkSchedule); <- WTF IS THIS
         if(workSchedule.workSchedulingList == null){
             workSchedule.workSchedulingList = new ArrayList<>();
         }

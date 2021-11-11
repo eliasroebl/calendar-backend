@@ -15,11 +15,22 @@ import java.util.Optional;
 public class WorkScheduleRepository implements PanacheRepositoryBase<WorkSchedule, Long>, Serializable {
 
     public List<WorkSchedule> findAllWorkSchedules() {
-        return WorkSchedule.listAll();
+        List<WorkSchedule> list = WorkSchedule.listAll();
+        list.forEach(workSchedule -> {
+            workSchedule.getScheduleDate();
+            workSchedule.getWorkSchedulingList();
+        });
+        return list;
     }
 
     public WorkSchedule findWorkScheduleById(Long id){
         Optional<WorkSchedule> optionalWorkSchedule = WorkSchedule.findByIdOptional(id);
+        optionalWorkSchedule.stream().forEach(
+                workSchedule -> {
+                    workSchedule.getWorkSchedulingList();
+                    workSchedule.getScheduleDate();
+                }
+        );
         return optionalWorkSchedule.orElseThrow(NotFoundException::new);
     }
 

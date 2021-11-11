@@ -46,7 +46,6 @@ public class EmployeeEndpoint {
     public Response createEmployee(@Context UriInfo info, Employee employee){
         if(employee == null) return Response.noContent().build();
         Employee newEmployee = new Employee();
-        employeeRepository.persist(newEmployee);
         //If 1-* Relationship, persist here
         newEmployee.CopyProperties(employee);
         Employee savedEmployee = employeeRepository.persistEmployee(newEmployee);
