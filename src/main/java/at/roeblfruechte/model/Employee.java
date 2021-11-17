@@ -27,4 +27,12 @@ public class Employee extends PanacheEntityBase implements ICopyable<Employee>, 
     public void CopyProperties(Employee other) {
         this.name = other.name;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

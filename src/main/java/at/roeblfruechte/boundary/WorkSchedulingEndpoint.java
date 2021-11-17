@@ -43,11 +43,9 @@ public class WorkSchedulingEndpoint {
     @Path("{id}")
     public Response createWorkScheduling(@PathParam("id") Long employeeId, @Context UriInfo info, WorkScheduling workScheduling){
         if(workScheduling == null) return Response.noContent().build();
-        Employee employee = employeeRepository.findEmployeeById(employeeId);
-        workScheduling.employee = employee;
+        workScheduling.employee = employeeRepository.findEmployeeById(employeeId);
         WorkScheduling newWorkScheduling = new WorkScheduling();
         workSchedulingRepository.persist(newWorkScheduling);
-        newWorkScheduling.employee = employee;
         newWorkScheduling.CopyProperties(workScheduling);
         WorkScheduling savedWorkScheduling = workSchedulingRepository.persistWorkScheduling(newWorkScheduling);
         URI uri = info.getAbsolutePathBuilder().path("/" + savedWorkScheduling.id).build();

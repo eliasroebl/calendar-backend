@@ -55,12 +55,12 @@ public class WorkScheduling extends PanacheEntityBase implements ICopyable<WorkS
     @Override
     public void CopyProperties(WorkScheduling other) {
         if(other != null){
-            this.employee = other.employee;
-            this.workSchedule = other.workSchedule;
-            this.from = other.from;
-            this.to = other.to;
-            this.location = other.location;
-            this.scheduleDate = other.scheduleDate;
+            if(other.employee != null) this.employee = other.employee;
+            if(other.workSchedule != null) this.workSchedule = other.workSchedule;
+            if(other.from != null) this.from = other.from;
+            if(other.to != null) this.to = other.to;
+            if(other.location != null) this.location = other.location;
+            if(other.scheduleDate != null) this.scheduleDate = other.scheduleDate;
         }
     }
 
