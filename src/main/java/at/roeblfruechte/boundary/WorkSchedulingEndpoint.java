@@ -41,9 +41,10 @@ public class WorkSchedulingEndpoint {
 
     @POST
     @Path("{id}")
-    public Response createWorkScheduling(@PathParam("id") Long companyId, @Context UriInfo info, WorkScheduling workScheduling){
+    public Response createWorkScheduling(@PathParam("id") Long employeeId, @Context UriInfo info, WorkScheduling workScheduling){
         if(workScheduling == null) return Response.noContent().build();
-        Employee employee = employeeRepository.findEmployeeById(companyId);
+        Employee employee = employeeRepository.findEmployeeById(employeeId);
+        workScheduling.employee = employee;
         WorkScheduling newWorkScheduling = new WorkScheduling();
         workSchedulingRepository.persist(newWorkScheduling);
         newWorkScheduling.employee = employee;

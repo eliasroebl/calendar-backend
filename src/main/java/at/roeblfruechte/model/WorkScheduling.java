@@ -10,6 +10,8 @@ import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
 @Table(name = "WORK_SCHEDULING", schema = "CALENDAR")
@@ -35,13 +37,17 @@ public class WorkScheduling extends PanacheEntityBase implements ICopyable<WorkS
     @JoinColumn(name = "WORK_SCHEDULE_ID", referencedColumnName = "ID")
     public WorkSchedule workSchedule;
 
-    @Column(name = "FROM_DATE")
-    @JsonbDateFormat(value = "yyyy-MM-dd")
-    public LocalDate from = LocalDate.now();
+    @JsonbDateFormat("yyyy-MM-dd")
+    @Column(name="SCHEDULE_DATE")
+    public LocalDate scheduleDate;
 
-    @Column(name = "TO_DATE")
-    @JsonbDateFormat(value = "yyyy-MM-dd")
-    public LocalDate to = LocalDate.now();
+    @JsonbDateFormat("HH:mm")
+    @Column(name = "FROM_TIME")
+    public LocalTime from;
+
+    @JsonbDateFormat("HH:mm")
+    @Column(name = "TO_TIME")
+    public LocalTime to;
 
     @Column(name="LOCATION")
     public ELocation location;
@@ -54,6 +60,17 @@ public class WorkScheduling extends PanacheEntityBase implements ICopyable<WorkS
             this.from = other.from;
             this.to = other.to;
             this.location = other.location;
+            this.scheduleDate = other.scheduleDate;
         }
     }
+
+    public LocalDate getScheduleDate() {
+
+        return scheduleDate;
+    }
+
+    public Employee getEmployee(){
+        return employee;
+    }
+
 }
