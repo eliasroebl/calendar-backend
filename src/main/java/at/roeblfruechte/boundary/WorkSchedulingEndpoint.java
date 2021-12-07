@@ -14,6 +14,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import java.net.URI;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Path("/api/workScheduling")
@@ -39,13 +41,19 @@ public class WorkSchedulingEndpoint {
         return workSchedulingRepository.findWorkSchedulingById(id);
     }
 
+    @GET
+    @Path("date/{date}")
+    public List<WorkScheduling> getCurrentWeekWorkScheduling(@PathParam("date") String date){
+        LocalDate ld = LocalDate.parse(date);
+        return workSchedulingRepository.findCurrentWeekWorkSchedulings(ld);
+    }
+
     @POST
-    @Path("{id}")
-    public Response createWorkScheduling(@PathParam("id") Long employeeId, @Context UriInfo info, WorkScheduling workScheduling){
+    public Response createWorkScheduling(@Context UriInfo info, WorkScheduling workScheduling){
         if(workScheduling == null) return Response.noContent().build();
-        workScheduling.employee = employeeRepository.findEmployeeById(employeeId);
+        workScheduling.employee = employeeRepository.findEmployeeById(workScheduling.employee.id);
         WorkScheduling newWorkScheduling = new WorkScheduling();
-        workSchedulingRepository.persist(newWorkScheduling);
+        //workSchedulingRepository.persist(newWorkScheduling);
         newWorkScheduling.CopyProperties(workScheduling);
         WorkScheduling savedWorkScheduling = workSchedulingRepository.persistWorkScheduling(newWorkScheduling);
         URI uri = info.getAbsolutePathBuilder().path("/" + savedWorkScheduling.id).build();
