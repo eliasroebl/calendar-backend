@@ -1,7 +1,7 @@
 package at.roeblfruechte.contracts;
 
 public enum ELocation {
-    Hauptgeschaeft,
+    Geschäft,
     Freistand,
     Hauptplatz
 }
