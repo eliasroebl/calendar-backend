@@ -26,6 +26,11 @@ public class AbsenceEndpoint {
     AbsenceRepository absenceRepository;
 
     @GET
+    public List<Absence> getAllAbsences(){
+        return absenceRepository.findAll().list();
+    }
+
+    @GET
     @Path("{id}")
     public Absence getAbsenceById(@PathParam("id")Long id){
         return absenceRepository.findAbsenceById(id);
