@@ -39,6 +39,17 @@ public class WorkSchedulingRepository implements PanacheRepositoryBase<WorkSched
         return optionalWorkScheduling.orElseThrow(NotFoundException::new);
     }
 
+    public List<WorkScheduling> findCurrentWeekWorkSchedulings(LocalDate date){
+        LocalDate dateMonday = date.minusDays((date.getDayOfWeek().getValue()) - 1);
+        LocalDate dateSaturday = date.plusDays(5);
+        return WorkScheduling.findAll().list().stream()
+                .map(peb -> (WorkScheduling)peb)
+                .filter(ws ->
+                        ws.getScheduleDate().isAfter(dateMonday.minusDays(1)) &&
+                        ws.getScheduleDate().isBefore(dateSaturday.plusDays(1)))
+                .collect(Collectors.toList());
+    }
+
     public List<WorkScheduling> findWorkSchedulingsByEmployee(Long employeeId){
         Employee employee = employeeRepository.findEmployeeById(employeeId);
         List<WorkScheduling> workSchedulings = WorkSchedule.list("employee_id", employee.id);
