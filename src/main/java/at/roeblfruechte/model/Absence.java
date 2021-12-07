@@ -39,7 +39,7 @@ public class Absence extends PanacheEntityBase implements ICopyable<Absence>, Se
     @Column(name = "TEXT")
     public String text = "";
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "EMPLOYEE_ID", referencedColumnName = "ID")
     public Employee employee;
 
