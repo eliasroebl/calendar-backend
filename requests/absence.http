@@ -3,9 +3,12 @@ Content-Type: application/json
 
 {
   "absenceType": "Urlaub",
-  "dateStart": "2021-11-10",
-  "dateEnd": "2021-11-15",
-  "text": "Bernadette"
+  "dateStart": "2021-12-10",
+  "dateEnd": "2022-01-10",
+  "employee":
+  {
+    "id": 3
+  }
 }
 
 ###
