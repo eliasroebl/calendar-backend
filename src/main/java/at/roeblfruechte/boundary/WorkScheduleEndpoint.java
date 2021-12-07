@@ -15,6 +15,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import java.net.URI;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +44,13 @@ public class WorkScheduleEndpoint {
         return workScheduleRepository.findWorkScheduleById(id);
     }
 
-    @POST
+    @GET
+    @Path("{date}")
+    public List<WorkSchedule> getCurrentWeekWorkSchedulings(@PathParam("date")String date){
+        return workScheduleRepository.findCurrentWeekWorkSchedules(LocalDate.parse(date));
+    }
+
+    /*@POST
     public Response createWorkSchedule(@Context UriInfo info, WorkSchedule workSchedule){
         if(workSchedule == null) return Response.noContent().build();
         WorkSchedule newWorkSchedule = new WorkSchedule();
@@ -53,7 +61,6 @@ public class WorkScheduleEndpoint {
             WorkScheduling workScheduling = new WorkScheduling();
             workScheduling.CopyProperties(s);
             workScheduling.employee = s.employee;
-            workScheduling.workSchedule = s.workSchedule;
             workScheduling.location = s.location;
             workScheduling.from = s.from;
             workScheduling.to = s.to;
@@ -64,7 +71,7 @@ public class WorkScheduleEndpoint {
         WorkSchedule savedWorkSchedule = workScheduleRepository.persistWorkSchedule(newWorkSchedule);
         URI uri = info.getAbsolutePathBuilder().path("/" + savedWorkSchedule.id).build();
         return Response.created(uri).build();
-    }
+    }*/
 
     @DELETE
     @Path("{id}")

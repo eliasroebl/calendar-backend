@@ -2,7 +2,6 @@ package at.roeblfruechte.model;
 
 import at.roeblfruechte.contracts.ICopyable;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
-import net.bytebuddy.asm.Advice;
 
 import javax.json.bind.annotation.JsonbDateFormat;
 import javax.persistence.*;
@@ -37,11 +36,11 @@ public class WorkSchedule extends PanacheEntityBase implements ICopyable<WorkSch
     public WorkSchedule(Long id, LocalDate scheduleDate, List<WorkScheduling> workSchedulingList) {
         this.id = id;
         setScheduleDate(scheduleDate);
-        this.workSchedulingList = workSchedulingList;
+        //his.workSchedulingList = workSchedulingList;
     }
 
-    @OneToMany(mappedBy = "workSchedule", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    public List<WorkScheduling> workSchedulingList = new ArrayList<>();
+    /*@OneToMany(mappedBy = "workSchedule", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    public List<WorkScheduling> workSchedulingList = new ArrayList<>();*/
 
     public Long getId() {
         return id;
@@ -58,15 +57,15 @@ public class WorkSchedule extends PanacheEntityBase implements ICopyable<WorkSch
         return scheduleDate;
     }
 
-    public List<WorkScheduling> getWorkSchedulingList() {
+    /*public List<WorkScheduling> getWorkSchedulingList() {
         return workSchedulingList;
-    }
+    }*/
 
     @Override
     public void CopyProperties(WorkSchedule other) {
         if(other != null){
             this.scheduleDate = other.scheduleDate;
-            this.workSchedulingList = other.workSchedulingList;
+            // this.workSchedulingList = other.workSchedulingList;
         }
     }
 }

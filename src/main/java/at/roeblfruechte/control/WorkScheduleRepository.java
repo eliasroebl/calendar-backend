@@ -7,8 +7,11 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
 import javax.ws.rs.NotFoundException;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Transactional
 @ApplicationScoped
@@ -17,21 +20,30 @@ public class WorkScheduleRepository implements PanacheRepositoryBase<WorkSchedul
     public List<WorkSchedule> findAllWorkSchedules() {
         List<WorkSchedule> list = WorkSchedule.listAll();
         list.forEach(workSchedule -> {
-            workSchedule.getScheduleDate();
-            workSchedule.getWorkSchedulingList();
+            //workSchedule.getWorkSchedulingList();
         });
         return list;
     }
 
     public WorkSchedule findWorkScheduleById(Long id){
         Optional<WorkSchedule> optionalWorkSchedule = WorkSchedule.findByIdOptional(id);
-        optionalWorkSchedule.stream().forEach(
+        optionalWorkSchedule.ifPresent(
                 workSchedule -> {
-                    workSchedule.getWorkSchedulingList();
-                    workSchedule.getScheduleDate();
+                    //workSchedule.getWorkSchedulingList();
                 }
         );
         return optionalWorkSchedule.orElseThrow(NotFoundException::new);
+    }
+
+    public List<WorkSchedule> findCurrentWeekWorkSchedules(LocalDate date){
+        LocalDate dateMonday = date.minusDays((date.getDayOfWeek().getValue()) - 1);
+        LocalDate dateSaturday = date.plusDays(5);
+        return WorkSchedule.findAll().list().stream()
+                .map(peb -> (WorkSchedule)peb)
+                .filter(ws ->
+                        ws.getScheduleDate().isAfter(dateMonday.minusDays(1)) &&
+                        ws.getScheduleDate().isBefore(dateSaturday.plusDays(1)))
+                .collect(Collectors.toList());
     }
 
     public WorkSchedule persistWorkSchedule(WorkSchedule workSchedule){

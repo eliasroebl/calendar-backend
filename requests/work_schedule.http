@@ -2,7 +2,7 @@ POST http://localhost:8080/api/workSchedule
 Content-Type: application/json
 
 {
-  "scheduleDate": "2020-01-11"
+  "scheduleDate": "2020-12-11"
 }
 
 ###
