@@ -21,6 +21,8 @@ public class Employee extends PanacheEntityBase implements ICopyable<Employee>, 
             generator = "employeeSequence"
     )
     public Long id;
+
+    @Column(name = "NAME")
     public String name;
 
     @Override

@@ -2,7 +2,7 @@ POST http://localhost:8080/api/employee
 Content-Type: application/json
 
 {
-  "name": "Bernadette"
+  "name": "Sascha"
 }
 
 ###
