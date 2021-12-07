@@ -2,15 +2,12 @@ package at.roeblfruechte.model;
 
 import at.roeblfruechte.contracts.ELocation;
 import at.roeblfruechte.contracts.ICopyable;
-import com.fasterxml.jackson.annotation.JacksonAnnotation;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
 import javax.json.bind.annotation.JsonbDateFormat;
-import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Entity
@@ -29,13 +26,13 @@ public class WorkScheduling extends PanacheEntityBase implements ICopyable<WorkS
     )
     public Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "EMPLOYEE_ID", referencedColumnName = "ID")
     public Employee employee;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    /*@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "WORK_SCHEDULE_ID", referencedColumnName = "ID")
-    public WorkSchedule workSchedule;
+    public WorkSchedule workSchedule;*/
 
     @JsonbDateFormat("yyyy-MM-dd")
     @Column(name="SCHEDULE_DATE")
@@ -56,7 +53,7 @@ public class WorkScheduling extends PanacheEntityBase implements ICopyable<WorkS
     public void CopyProperties(WorkScheduling other) {
         if(other != null){
             if(other.employee != null) this.employee = other.employee;
-            if(other.workSchedule != null) this.workSchedule = other.workSchedule;
+            //if(other.workSchedule != null) this.workSchedule = other.workSchedule;
             if(other.from != null) this.from = other.from;
             if(other.to != null) this.to = other.to;
             if(other.location != null) this.location = other.location;
