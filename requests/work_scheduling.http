@@ -1,12 +1,18 @@
-POST http://localhost:8080/api/workScheduling/1
+POST http://localhost:8080/api/workScheduling
 Content-Type: application/json
 
 {
-  "scheduleDate": "2021-11-10",
   "from": "06:00",
   "to": "14:00",
-  "location": "Hauptplatz"
+  "location": "Geschäft",
+  "employee": {
+    "id": 1
+  }
 }
+
+###
+
+GET http://localhost:8080/api/workScheduling/date/2021-12-07
 
 ###
 
@@ -17,3 +23,7 @@ Content-Type: application/json
   "from": "07:00"
 
 }
+
+###
+
+DELETE http://localhost:8080/api/workScheduling/1
